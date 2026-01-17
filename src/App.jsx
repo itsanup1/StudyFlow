@@ -1,5 +1,6 @@
 import { Navbar } from './component/Navbar'
 import { ToDo } from './Tools/To-Do'
+import { EditModal } from './component/EditModal'
 
 function App() {
 
@@ -7,7 +8,8 @@ function App() {
     <>
         <Navbar />
         <ToDo />
-    </>
+        {/*<EditModal/>*/};
+     </>
   )
 }
 

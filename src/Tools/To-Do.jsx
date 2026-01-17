@@ -1,13 +1,23 @@
 import {useState,useRef,useEffect} from 'react'
 
 export function ToDo(){
-    const [todos,setTodos] = useState([
-        {
-            id:1,
-            text: "Hello",
-            completed: true
+    const [todos, setTodos] = useState(() => {
+        try{
+            const savedTodos = localStorage.getItem("todos");
+            return savedTodos
+                ? JSON.parse(savedTodos)
+                : [
+                    {
+                        id: 1,
+                        text: "Hello",
+                        completed: false,
+                    },
+                ];
+        }catch{
+            return [];
         }
-    ]);
+        
+    });
     const [input,setInput] = useState("");
     
     const [editId,setEditId] = useState(null);
@@ -23,6 +33,10 @@ export function ToDo(){
         }
     }, [editId]);
     
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
+        
     function addTodo() {
         if (input.trim() === "") return;
         
