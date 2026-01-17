@@ -28,4 +28,4 @@ Version Control: Git & GitHub
 
 ## 📦 Configuration & Installation 
 1. Use the following command to clone the repository:
-   ```bash git clone https://github.com/your-username/StudyFlow.git```
+   ```bash git clone https://github.com/itsanup1/StudyFlow.git```
