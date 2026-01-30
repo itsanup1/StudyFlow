@@ -8,7 +8,7 @@ function App() {
     <>
         <Navbar />
         <ToDo />
-        {/*<EditModal/>*/};
+        {/*<EditModal/>*/}
      </>
   )
 }
