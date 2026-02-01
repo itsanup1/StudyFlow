@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import { AddModal } from "../component/AddModal";
 import { EditModal } from "../component/EditModal";
-import { EditTask } from "../component/EditTask";
 import { Task } from "../component/Task";
 import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
 import {
@@ -94,7 +94,7 @@ export function ToDo() {
 
       {/* ADD MODAL */}
       {openAddModal && (
-        <EditModal
+        <AddModal
           setOpenModal={setOpenAddModal}
           setTodos={setTodos}
         />
@@ -102,7 +102,7 @@ export function ToDo() {
 
       {/* EDIT MODAL */}
       {openEditModal && (
-        <EditTask
+        <EditModal
           setOpenModal={setOpenEditModal}
           editId={editId}
           editText={editText}
