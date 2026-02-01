@@ -14,10 +14,20 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
     <li
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
       className="mt-4 flex items-start w-full touch-none select-none"
     >
+      {/* DRAG HANDLE */}
+      <span
+        {...attributes}
+        {...listeners}
+        className="mr-4 mt-2 p-2 text-gray-500 hover:text-gray-700 cursor-grab"
+        aria-label="Drag to reorder"
+        title="Drag to reorder"
+      >
+        {/* simple grip icon — replace with any icon if you like */}
+        ☰
+      </span>
+
       {/* CHECKBOX */}
       <input
         type="checkbox"
@@ -29,17 +39,13 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
       {/* TEXT */}
       <div className="flex flex-col gap-2 w-full">
         <span
-          className={`text-xl truncate ${
-            todo.completed && "line-through text-gray-400"
-          }`}
+          className={`text-xl truncate ${todo.completed && "line-through text-gray-400"}`}
         >
           {todo.text}
         </span>
 
         <span
-          className={`text-gray-500 truncate ${
-            todo.completed && "invisible"
-          }`}
+          className={`text-gray-500 truncate ${todo.completed && "invisible"}`}
         >
           {todo.description}
         </span>
@@ -55,7 +61,10 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
           Edit
         </button>
 
-        <button className="btn1" onClick={() => deleteTodo(todo.id)}>
+        <button
+          className="btn1"
+          onClick={() => deleteTodo(todo.id)}
+        >
           Delete
         </button>
       </div>
