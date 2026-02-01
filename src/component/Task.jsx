@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import {DragHandleIcon} from '../assets/DragHandleIcon'
 
 export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -17,16 +18,14 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
       className="mt-4 flex items-start w-full touch-none select-none"
     >
       {/* DRAG HANDLE */}
-      <span
+      <DragHandleIcon
         {...attributes}
         {...listeners}
-        className="mr-4 mt-2 p-2 text-gray-500 hover:text-gray-700 cursor-grab"
+        className="mr-4 text-gray-500 hover:text-gray-700 cursor-grab outline-none"
         aria-label="Drag to reorder"
         title="Drag to reorder"
-      >
-        {/* simple grip icon — replace with any icon if you like */}
-        ☰
-      </span>
+      />
+        
 
       {/* CHECKBOX */}
       <input
