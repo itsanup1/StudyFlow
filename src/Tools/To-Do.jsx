@@ -1,6 +1,21 @@
 import { useState, useEffect } from "react";
 import { EditModal } from "../component/EditModal";
 import { EditTask } from "../component/EditTask";
+import { Task } from "../component/Task";
+import {SortableContext, verticalListSortingStrategy} from '@dnd-kit/sortable'
+import {
+  DndContext,
+  closestCorners,
+  useSensor,
+  useSensors,
+  PointerSensor,
+  TouchSensor,
+  KeyboardSensor
+} from "@dnd-kit/core";
+
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { arrayMove } from "@dnd-kit/sortable";
+
 
 export function ToDo() {
   const [todos, setTodos] = useState(() => {
@@ -23,6 +38,22 @@ export function ToDo() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  
+  function handleDragEnd(event) {
+    const { active, over } = event;
+    
+    if (!over) return;
+    
+    if (active.id !== over.id) {
+        setTodos(items => {
+        const oldIndex = items.findIndex(i => i.id === active.id);
+        const newIndex = items.findIndex(i => i.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+        });
+    }
+  }
+  
+  
   /* DELETE */
   function deleteTodo(id) {
     setTodos(prev => prev.filter(todo => todo.id !== id));
@@ -38,6 +69,14 @@ export function ToDo() {
       )
     );
   }
+  
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor, {
+        coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   return (
     <div className="mt-5 p-4 max-w-200 mx-auto">
@@ -75,62 +114,30 @@ export function ToDo() {
       )}
 
       {/* TODO LIST */}
-      <ul className="mt-8 text-lg">
-        {todos.map(todo => (
-          <li key={todo.id} className="mt-4 flex items-start w-full">
-            
-            {/* CHECKBOX */}
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleComplete(todo.id)}
-              className="mr-6 mt-2 scale-150"
-            />
-
-            {/* TEXT */}
-            <div className="flex flex-col gap-2 w-full">
-              <span
-                className={`text-xl truncate ${
-                  todo.completed && "line-through text-gray-400"
-                }`}
-              >
-                {todo.text}
-              </span>
-
-              <span
-                className={`text-gray-500 truncate ${
-                  todo.completed && "invisible"
-                }`}
-              >
-                {todo.description}
-              </span>
-            </div>
-
-            {/* ACTIONS */}
-            <div className="flex gap-2 items-center">
-              <button
-                disabled={todo.completed}
-                className="btn1 disabled:opacity-40"
-                onClick={() => {
-                  setEditId(todo.id);
-                  setEditText(todo.text);
-                  setEditDescription(todo.description);
-                  setOpenEditModal(true);
+      <DndContext collisionDetection = {closestCorners} sensors={sensors} onDragEnd={handleDragEnd}>
+        <SortableContext
+        items={todos.map(t => t.id)}
+        strategy={verticalListSortingStrategy}
+        >
+            <ul className="mt-8 text-lg">
+                {todos.map(todo => (
+                
+                <Task
+                key={todo.id}
+                todo={todo}
+                toggleComplete={toggleComplete}
+                deleteTodo={deleteTodo}
+                openEdit={(todo) => {
+                    setEditId(todo.id);
+                    setEditText(todo.text);
+                    setEditDescription(todo.description);
+                    setOpenEditModal(true);
                 }}
-              >
-                Edit
-              </button>
-
-              <button
-                className="btn1"
-                onClick={() => deleteTodo(todo.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+                />
+            ))}
+            </ul>
+        </SortableContext>    
+      </DndContext>  
     </div>
   );
 }
