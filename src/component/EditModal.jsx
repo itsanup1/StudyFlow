@@ -36,23 +36,23 @@ export function EditModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center ">
       
       {/* BACKGROUND OVERLAY */}
       <div
-        className="absolute inset-0 bg-black/5 backdrop-blur-sm"
+        className="absolute inset-0 bg-[rgb(var(--pritext))]/5 backdrop-blur-sm"
         onClick={() => setOpenModal(false)}
       />
 
       {/* MODAL BOX */}
-      <div className="relative bg-white rounded-xl p-8 w-96 shadow-xl flex flex-col gap-4">
-        <h1 className="font-bold text-xl">Edit Task</h1>
+      <div className="relative bg-[rgb(var(--bg))] rounded-xl p-8 w-96 shadow-xl flex flex-col gap-4">
+        <h1 className="font-bold text-xl text-[rgb(var(--pritext))]">Edit Task</h1>
 
         {/* TITLE */}
         <input
           ref={inputRef}
           type="text"
-          className="border rounded-md w-full p-2"
+          className="border rounded-md w-full p-2 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80 focus:ring-0 outline-none"
           placeholder="Title"
           value={editText}
           onChange={e => setEditText(e.target.value)}
@@ -61,7 +61,7 @@ export function EditModal({
         {/* DESCRIPTION */}
         <input
           type="text"
-          className="border rounded-md w-full p-2"
+          className="border rounded-md w-full p-2 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80 focus:ring-0 outline-none"
           placeholder="Description"
           value={editDescription}
           onChange={e => setEditDescription(e.target.value)}
@@ -70,14 +70,14 @@ export function EditModal({
         {/* ACTIONS */}
         <div className="flex justify-end gap-2">
           <button
-            className="btn1"
+            className="btn1 text-[rgb(var(--pritext))] border-[rgb(var(--pritext))]"
             onClick={() => setOpenModal(false)}
           >
             Cancel
           </button>
 
           <button
-            className="btn1"
+            className="btn1 text-[rgb(var(--pritext))] border-[rgb(var(--pritext))]"
             onClick={saveEdit}
           >
             Save
