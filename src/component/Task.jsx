@@ -21,7 +21,7 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
       <DragHandleIcon
         {...attributes}
         {...listeners}
-        className="mr-4 text-gray-500 hover:text-gray-700 cursor-grab outline-none"
+        className="mr-4 text-[rgb(var(--sectext))] hover:text-gray-700 cursor-grab outline-none"
         aria-label="Drag to reorder"
         title="Drag to reorder"
       />
@@ -38,13 +38,13 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
       {/* TEXT */}
       <div className="flex flex-col gap-2 w-full">
         <span
-          className={`text-xl truncate ${todo.completed && "line-through text-gray-400"}`}
+          className={`text-xl text-[rgb(var(--pritext))] truncate ${todo.completed && "line-through text-[rgb(var(--sectext))]/60"}`}
         >
           {todo.text}
         </span>
 
         <span
-          className={`text-gray-500 truncate ${todo.completed && "invisible"}`}
+          className={`text-[rgb(var(--sectext))]/60 truncate ${todo.completed && "invisible"}`}
         >
           {todo.description}
         </span>
@@ -54,14 +54,14 @@ export function Task({ todo, toggleComplete, deleteTodo, openEdit }) {
       <div className="flex gap-2 items-center">
         <button
           disabled={todo.completed}
-          className="btn1 disabled:opacity-40"
+          className="btn1 text-[rgb(var(--pritext))] border-[rgb(var(--pritext))] disabled:opacity-40"
           onClick={() => openEdit(todo)}
         >
           Edit
         </button>
 
         <button
-          className="btn1"
+          className="btn1 text-[rgb(var(--pritext))] "
           onClick={() => deleteTodo(todo.id)}
         >
           Delete

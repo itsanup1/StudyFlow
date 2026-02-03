@@ -80,12 +80,12 @@ export function ToDo() {
 
   return (
     <div className="mt-5 p-4 max-w-200 mx-auto">
-      <h1 className="text-3xl font-bold mb-4">To-Do List</h1>
+      <h1 className="text-3xl text-[rgb(var(--pritext))] font-bold mb-4">To-Do List</h1>
 
       {/* ADD BUTTON */}
       <div className="flex justify-end">
         <button
-          className="apply px-6 py-2 bg-gray-700 text-white rounded-md tracking-wider"
+          className="apply px-6 py-2 bg-[rgb(var(--pritext))] text-[rgb(var(--bg))] rounded-md tracking-wider"
           onClick={() => setOpenAddModal(true)}
         >
           + Add

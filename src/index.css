@@ -2,9 +2,30 @@
 
 body {
   @apply font-mono ;
+  background-color:rgb(var(--bg));
 }
 
 .btn1{
     @apply px-4 py-1 border rounded-md transition-colors duration-200 active:bg-gray-300 ;
 }
 
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Light Theme */
+:root {
+  --bg: 255 255 255;
+  --pritext: 0 0 0;
+  --sectext: 55 65 82;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg: 15 23 42;
+  --pritext: 255 255 255;
+  --sectext: 161 161 170;
+}
