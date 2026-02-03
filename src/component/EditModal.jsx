@@ -52,7 +52,7 @@ export function EditModal({
         <input
           ref={inputRef}
           type="text"
-          className="border rounded-md w-full p-2 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80 focus:ring-0 outline-none"
+          className="inp1 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80"
           placeholder="Title"
           value={editText}
           onChange={e => setEditText(e.target.value)}
@@ -61,7 +61,7 @@ export function EditModal({
         {/* DESCRIPTION */}
         <input
           type="text"
-          className="border rounded-md w-full p-2 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80 focus:ring-0 outline-none"
+          className="inp1 text-[rgb(var(--pritext))] placeholder-[rgb(var(--pritext))]/80 "
           placeholder="Description"
           value={editDescription}
           onChange={e => setEditDescription(e.target.value)}

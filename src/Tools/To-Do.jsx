@@ -85,7 +85,7 @@ export function ToDo() {
       {/* ADD BUTTON */}
       <div className="flex justify-end">
         <button
-          className="apply px-6 py-2 bg-[rgb(var(--pritext))] text-[rgb(var(--bg))] rounded-md tracking-wider"
+          className="apply px-6 py-2 shadow-inner bg-[rgb(var(--pritext))] text-[rgb(var(--bg))] rounded-md tracking-wider"
           onClick={() => setOpenAddModal(true)}
         >
           + Add
